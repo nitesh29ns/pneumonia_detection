@@ -1,0 +1,14 @@
+tensorflow==2.8.2
+numpy
+pandas
+matplotlib
+opencv-python
+notebook
+SciPy
+ultralyticsplus==0.0.24 
+ultralytics==8.0.23
+streamlit
+mysql-connector-python
+torch 
+torchvision 
+torchaudio
