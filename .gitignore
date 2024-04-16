@@ -129,7 +129,7 @@ env.bak/
 venv.bak/
 
 # dataset folder
-chest_x_ray_dataset
+chest_x_ray_dataset/
 
 # model
 *.h5
