@@ -131,6 +131,9 @@ venv.bak/
 # dataset folder
 chest_x_ray_dataset/
 
+# artifact
+artifact/
+
 # model
 *.h5
 *.pt
