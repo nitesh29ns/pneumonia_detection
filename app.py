@@ -51,7 +51,7 @@ if st.button("YOLOv8"):
 
 if st.button("CNN"):
 
-    st.model = tf.keras.models.load_model("CNN.h5")
+    st.model = tf.keras.models.load_model("./saved_models/CNN.h5")
     img_array = cv2.resize(img_array, (224,224), interpolation=cv2.INTER_AREA)
     img_array = np.expand_dims(img_array, axis=0)
 
