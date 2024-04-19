@@ -9,4 +9,6 @@ ultralyticsplus==0.0.24
 ultralytics==8.0.23
 streamlit
 mysql-connector-python
+kaggle
+dill
 #for gpu with torch -- pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 

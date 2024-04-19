@@ -12,3 +12,5 @@ mysql-connector-python
 torch 
 torchvision 
 torchaudio
+kaggle
+dill
