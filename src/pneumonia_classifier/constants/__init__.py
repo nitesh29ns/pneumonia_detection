@@ -76,11 +76,6 @@ MODEL_EVALUATION_CONFIG_KEY = 'model_evaluation_config'
 MODEL_EVALUATION_REPORT_DIR_KEY = 'evaluation_report_dir'
 MODEL_EVALUATION_REPORT_FILE_NAME = 'evaluation_report_file_name'
 
-# s3 bucket credenticals
-AWS_ACCESS_KEY_ID = 'AKIAVEALGMKYBU2EQ344'
-AWS_SECRET_ACCESS_KEY = '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'
-BUCKET_NAME = 'census-prediction-model'
-
 # model pusher related variables
 MODEL_PUSHER_CONFIG_KEY ='model_pusher_config'
 MODEL_PUSHER_SAVED_MODEL_DIR = 'saved_model_dir'
