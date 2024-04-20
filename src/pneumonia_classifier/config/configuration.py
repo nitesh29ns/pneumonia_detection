@@ -22,7 +22,7 @@ class configration:
 
     def get_data_ingestion_config(self)-> dataingestionconfig:
         try:
-            artifact_dir = self.trainging_pipeline_config.artfact_dir
+            artifact_dir = self.trainging_pipeline_config.artifact_dir
 
             data_ingestion_artifact_dir = os.path.join(
                 artifact_dir,
@@ -36,8 +36,6 @@ class configration:
 
             dataset_download_url = data_ingestion_info[DATASET_DOWNLOAD_URL_KEY]
 
-            data_file_name = data_ingestion_info[DATASET_FILE_NAME_KEY]
-
             tgz_download_dir = os.path.join(data_ingestion_artifact_dir,
                                             data_ingestion_info[TGZ_DOWNLOAD_DIR_KEY])
             
@@ -47,10 +45,25 @@ class configration:
             data_ingestion_config = dataingestionconfig(
                 dataset_download_url=dataset_download_url,
                 tgz_download_dir=tgz_download_dir,
-                ingested_data_dir=ingested_data_dir
+                ingested_dir=ingested_data_dir
             )
             lg.info(f"data ingestion config: [{data_ingestion_config}].")
             return data_ingestion_config
         
+        except Exception as e:
+            raise classificationException(e, sys) from e
+        
+    def get_training_pipeline_config(self)->trainingpipelineconfig:
+        try:
+            training_pipeline_config = self.config_info[TRAINING_PIPELINE_CONFIG_KEY]
+            artifact_dir = os.path.join(ROOT_DIR,
+                                        training_pipeline_config[TRAINING_PIPELINE_NAME_KEY],
+                                        training_pipeline_config[TRAINING_PIPELINE_ARTIFACT_DIR_KEY])
+            
+            os.makedirs(artifact_dir, exist_ok=True)
+
+            training_pipeline_config =trainingpipelineconfig(artifact_dir=artifact_dir)
+            lg.info(f"training pipeline config:[{training_pipeline_config}]")
+            return training_pipeline_config
         except Exception as e:
             raise classificationException(e, sys) from e
