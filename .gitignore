@@ -133,6 +133,7 @@ chest_x_ray_dataset/
 
 # artifact
 artifact/
+pneumonia/
 
 # model
 *.h5
