@@ -3,6 +3,7 @@ from src.pneumonia_classifier.logger import lg
 from src.pneumonia_classifier.pipeline.pipeline import PipeLine
 from src.pneumonia_classifier.config.configuration import configration
 from src.pneumonia_classifier.components.data_ingestion import DataIngestion
+from src.pneumonia_classifier.components.model_trainer import Model_Trainer
 from src.pneumonia_classifier.constants import *
 import os, sys
 

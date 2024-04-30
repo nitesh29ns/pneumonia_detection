@@ -62,7 +62,7 @@ class DataIngestion:
             lg.info(f"extraction completed.")
 
             data_ingestion_artifact = DataIngestArtifact(
-                ingested_dir_path = zip_file,
+                ingested_dir_path = raw_data_dir,
                 message=f"data ingestion completed successfully."
             )
             return data_ingestion_artifact

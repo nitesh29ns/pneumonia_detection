@@ -78,7 +78,7 @@ class configration:
 
             trained_model_config = modeltrainerconfig(
                 trained_model_file_path=trained_model_file_path,
-                model_config_file_path=trained_model_config_file_path 
+                model_config_file_path=trained_model_config_file_path
             )
 
             return trained_model_config

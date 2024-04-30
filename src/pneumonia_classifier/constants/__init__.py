@@ -49,6 +49,13 @@ TRAINED_MODEL_CONFIG_DIR = 'model_config_dir'
 TRAINED_MODEL_CONFIG_FILE_NAME = 'model_config_file_name'
 TRAINED_MODEL_FILE_NAME = 'model_file_name'
 
+# trainig parameters
+MODEL_PARAMS_KEY = "params"
+EPOCHS_KEY = 'epochs'
+OPTIMIZER_KEY = 'optimizer'
+LOSS_KEY = 'loss'
+METRICS_KEY = 'metrics'
+
 
 # model evaluation related variables
 MODEL_EVALUATION_ARTIFACT_DIR_KEY = 'model_evaluation'

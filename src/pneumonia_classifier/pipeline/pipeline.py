@@ -3,6 +3,7 @@ from src.pneumonia_classifier.logger import lg
 from src.pneumonia_classifier.entity.artifact_entity import *
 import os, sys
 from src.pneumonia_classifier.components.data_ingestion import DataIngestion
+from src.pneumonia_classifier.components.model_trainer import Model_Trainer
 from src.pneumonia_classifier.config.configuration import configration
 
 class PipeLine():
@@ -24,12 +25,21 @@ class PipeLine():
             raise classificationException(e, sys) from e
             
 
+    def start_model_trainer(self,data_ingestion_artifact=DataIngestArtifact)->ModelTrainerArtifact:
+        try:
+            model_trainer = Model_Trainer(model_trainer_config=self.config.get_model_trainer_config(),
+                                          data_ingestion_artifact=data_ingestion_artifact)
+            
+            return model_trainer.initiate_model_trainer()
+        except Exception as e:
+            raise classificationException(e,sys) from e
     def run_pipeline(self):
         try:
             lg.info("pipeline stating.")
             data_ingestion_artifact = self.start_data_ingestion()
+            model_trainer_artifact = self.start_model_trainer(data_ingestion_artifact=data_ingestion_artifact)
 
-            return data_ingestion_artifact
+            return model_trainer_artifact
         
         except Exception as e:
             raise classificationException(e, sys) from e
