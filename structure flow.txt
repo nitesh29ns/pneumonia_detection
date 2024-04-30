@@ -1,0 +1,8 @@
+1. start with logger and exception.
+2. start with config.yaml file with data ingestion config and training pipeline config.
+3. make constant variables
+4. make components_config_entity in entity directory.
+5. make utils funcation in utils directory.
+6. start configuration in config with data ingestion and pipeline config to exicute all steps through pipeline.
+7. make data ingestion component in component directory.
+8. make pipeline in pipeline directory.

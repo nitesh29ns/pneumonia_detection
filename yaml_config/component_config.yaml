@@ -7,25 +7,11 @@ data_ingestion_config:
   tgz_download_dir: tgz_data
   ingested_dir : ingested_data
 
-data_validation_config:
-  schema_dir: yaml_config
-  schema_file_name: schema.yaml
-  report_file_path: data_drift_report.html
-  valid_data_dir : valid_data
-  valid_train_dir : train
-  valid_test_dir : test
 
-data_transformation_config:
-  transformed_dir : 'transformed_data'
-  transformed_train_dir : 'train'
-  transformed_test_dir : 'test'
-  preprocessing_dir : 'preprocessed'
-  preprocessed_object_file_name : 'preprocessed.pkl'
 
 model_trainer_config :
   trained_model_dir : trained_model
-  model_file_name : model.pkl
-  base_accuracy : 0.7
+  model_file_name : CNN.h5
   model_config_dir : yaml_config
   model_config_file_name : model.yaml
 

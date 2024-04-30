@@ -21,31 +21,18 @@ MYSQL_HOST = "localhost"
 MYSQL_USER = "root"
 MYSQL_PASSWD ="nitesh8527" 
 
-# data ingestion related variables
+# data ingestion and validation related variables
 DATA_INGESTION_ARTIFACT_DIR = 'data_ingestion' # name of the folder inside arifact 
 DATA_INGESTION_CONFIG_KEY = 'data_ingestion_config'
 DATASET_DOWNLOAD_URL_KEY = 'dataset_download_url'
 TGZ_DOWNLOAD_DIR_KEY = 'tgz_download_dir'
 INGESTED_DIR_KEY = 'ingested_dir'
 
-# data validation related variables
-DATA_VALIDATION_ARTIFACT_DIR = 'data_validation'
-DATA_VALIDATION_CONFIG_KEY = 'data_validation_config'
-DATA_VALIDATION_SCHEMA_FILE_NAME_KEY = 'schema_file_name'
-DATA_VALIDATION_SCHEMA_DIR = 'schema_dir'
-REPORT_FILE_PATH_KEY = 'report_file_path'
-VALID_DATA_DIR_KEY = 'valid_data_dir'
-VALID_TRAIN_DIR_KEY = 'valid_train_dir'
-VALID_TEST_DIR_KEY = 'valid_test_dir'
 
-# data transformation related variables
-DATA_TRANSFORMATION_ARTIFACT_DIR = 'data_transformation'
-DATA_TRANSFORMATION_CONFIG_KEY = 'data_transformation_config'
-DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR = 'transformed_dir'
-DATA_TRANSFORMATION_TRANSFORMED_TRAIN_DATA = 'transformed_train_dir'
-DATA_TRANSFORMATION_TRASFORMED_TEST_DATA = 'transformed_test_dir'
-DATA_TRANSFORMATION_PREPROCESSED_DIR = 'preprocessing_dir'
-DATA_TRANSFORMATION_PREPROCESSED_OBJECT_FILE_NAME = 'preprocessed_object_file_name'
+# data validation related variables
+VALID_VAL_DATA_DIR_KEY = 'val'
+VALID_TRAIN_DIR_KEY = 'train'
+VALID_TEST_DIR_KEY = 'test'
 
 
 #Training pipeline related variables
@@ -61,7 +48,7 @@ TRAINED_MODEL_DIR_KEY = 'trained_model_dir'
 TRAINED_MODEL_CONFIG_DIR = 'model_config_dir'
 TRAINED_MODEL_CONFIG_FILE_NAME = 'model_config_file_name'
 TRAINED_MODEL_FILE_NAME = 'model_file_name'
-TRAINED_MODEL_BASE_ACCURACY = 'base_accuracy'
+
 
 # model evaluation related variables
 MODEL_EVALUATION_ARTIFACT_DIR_KEY = 'model_evaluation'
