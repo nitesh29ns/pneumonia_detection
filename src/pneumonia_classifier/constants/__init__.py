@@ -7,6 +7,10 @@ def get_current_time_stamp():
     return f"{datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}"
 
 
+SAVED_MODELS_DIR_NAME = "saved_model"
+MODEL_DIR = os.path.join(ROOT_DIR, SAVED_MODELS_DIR_NAME)
+YOLO_MODEL = "keremberke/yolov8m-chest-xray-classification"
+
 CONFIG_DIR = 'yaml_config' 
 CONFIG_FILE_NAME = 'component_config.yaml'
 CONFIG_FILE_PATH = os.path.join(ROOT_DIR,CONFIG_DIR,CONFIG_FILE_NAME)
@@ -52,16 +56,9 @@ TRAINED_MODEL_FILE_NAME = 'model_file_name'
 # trainig parameters
 MODEL_PARAMS_KEY = "params"
 EPOCHS_KEY = 'epochs'
-OPTIMIZER_KEY = 'optimizer'
+LEARNING_RATE = 'learning_rate'
 LOSS_KEY = 'loss'
 METRICS_KEY = 'metrics'
-
-
-# model evaluation related variables
-MODEL_EVALUATION_ARTIFACT_DIR_KEY = 'model_evaluation'
-MODEL_EVALUATION_CONFIG_KEY = 'model_evaluation_config'
-MODEL_EVALUATION_REPORT_DIR_KEY = 'evaluation_report_dir'
-MODEL_EVALUATION_REPORT_FILE_NAME = 'evaluation_report_file_name'
 
 # model pusher related variables
 MODEL_PUSHER_CONFIG_KEY ='model_pusher_config'

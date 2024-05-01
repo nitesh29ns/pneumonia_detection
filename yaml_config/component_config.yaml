@@ -7,20 +7,11 @@ data_ingestion_config:
   tgz_download_dir: tgz_data
   ingested_dir : ingested_data
 
-
-
 model_trainer_config :
   trained_model_dir : trained_model
   model_file_name : CNN.h5
   model_config_dir : yaml_config
   model_config_file_name : model.yaml
 
-
-model_evaluation_config:
-  evaluation_report_dir : 'evaluation_report'
-  evaluation_report_file_name : 'evaluation_report.csv'
-
- 
-  
 model_pusher_config :
-  saved_model_dir : 'saved_model'
+  saved_model_dir : saved_model

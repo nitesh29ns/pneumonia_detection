@@ -1,20 +1,35 @@
+from src.pneumonia_classifier.pipeline.pipeline import PipeLine
+from src.pneumonia_classifier.config.configuration import configration
+from src.pneumonia_classifier.exception import classificationException
+from src.pneumonia_classifier.constants import *
+from src.pneumonia_classifier.utils.util import get_model_path, upload_data_to_db
 import streamlit as st
 import numpy as np
 from PIL import Image
 from ultralyticsplus import YOLO, postprocess_classify_output
 import tensorflow as tf
 import cv2
-import io
+import io, sys
 import base64
-import mysql.connector as conn
-
-mydb = conn.connect(host = "localhost", user = "root", passwd="nitesh8527")
-cursor = mydb.cursor()
 
 
 name = st.text_input("NAME",'enter your name')
 age = st.text_input("age",'enter your age')
 
+def start_pipeline():
+    try:
+        pipeline = PipeLine(config=configration(current_time_stamp=get_current_time_stamp()))
+        pipeline.run()
+    except Exception as e:
+        raise classificationException(e, sys)
+    
+
+with st.expander("Initiate ML Pipeline..."):
+            result = ""
+            if st.button("Start Pipeline"):
+                start_pipeline()
+                result = "ML Pipeline Completed Successfully."
+            st.success(result)
 
 # Read image as bytes then convert into image
 uploaded_file = st.file_uploader("Choose a X-RAY Image.")
@@ -31,7 +46,7 @@ if uploaded_file is not None:
     st.image(img_array)
 
 if st.button("YOLOv8"):
-    st.model = YOLO("keremberke/yolov8m-chest-xray-classification")
+    st.model = YOLO(YOLO_MODEL)
     st.model.overrides['conf'] = 0.25 
     result = st.model(img_array, device="CPU")
     processed_result = postprocess_classify_output(st.model, result=result[0])
@@ -41,17 +56,14 @@ if st.button("YOLOv8"):
     st.write(f"normal : {normal}")
     st.write(f"pneumonia : {pneumonia}")
 
-    args = (name, age, bytes_data, normal, pneumonia)
+    upload_data_to_db(name=name,age=age,bytes_data=bytes_data,normal=normal,pneumonia=pneumonia)
 
-    query = "insert into pneumonia_data.user_data values(%s, %s, %s, %s, %s)"
-
-    cursor.execute(query, args)
-    mydb.commit()
     
 
 if st.button("CNN"):
 
-    st.model = tf.keras.models.load_model("./saved_models/CNN.h5")
+    model_path = get_model_path()
+    st.model = tf.keras.models.load_model(model_path)
     img_array = cv2.resize(img_array, (224,224), interpolation=cv2.INTER_AREA)
     img_array = np.expand_dims(img_array, axis=0)
 
@@ -62,11 +74,7 @@ if st.button("CNN"):
 
     st.write(f"normal : {normal}")
     st.write(f"pneumonia : {pneumonia}")
+    
+    upload_data_to_db(name=name,age=age,bytes_data=bytes_data,normal=normal,pneumonia=pneumonia)
 
-    args = (name, age, bytes_data, normal, pneumonia)
-
-    query = "insert into pneumonia_data.user_data values(%s, %s, %s, %s, %s)"
-
-    cursor.execute(query, args)
-    mydb.commit()
 

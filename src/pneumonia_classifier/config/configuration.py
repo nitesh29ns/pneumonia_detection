@@ -86,6 +86,20 @@ class configration:
         except Exception as e:
             raise classificationException(e,sys) from e
         
+
+    def get_model_pusher_config(self)->modelPusherconfig:
+        try:
+            model_pusher_config = self.config_info[MODEL_PUSHER_CONFIG_KEY]
+
+            saved_model_path = os.path.join(ROOT_DIR,model_pusher_config[MODEL_PUSHER_SAVED_MODEL_DIR])
+
+            model_pusher_config = modelPusherconfig(
+                saved_model_path=saved_model_path)
+
+            return model_pusher_config
+        except Exception as e:
+            raise classificationException(e,sys) from e
+        
     def get_training_pipeline_config(self)->trainingpipelineconfig:
         try:
             training_pipeline_config = self.config_info[TRAINING_PIPELINE_CONFIG_KEY]

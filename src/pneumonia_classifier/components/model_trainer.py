@@ -52,7 +52,7 @@ class Model_Trainer:
             
             params = read_yaml_file(file_path=self.model_trainer_config.model_config_file_path)
             params = params[MODEL_PARAMS_KEY]
-            model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), loss='binary_crossentropy', metrics=['acc'])
+            model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=params[LEARNING_RATE]), loss=params[LOSS_KEY], metrics=[params[METRICS_KEY]])
 
             lg.info(f"{'>>' * 30}model summary: {model.summary()}")
 

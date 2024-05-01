@@ -4,6 +4,7 @@ from src.pneumonia_classifier.entity.artifact_entity import *
 import os, sys
 from src.pneumonia_classifier.components.data_ingestion import DataIngestion
 from src.pneumonia_classifier.components.model_trainer import Model_Trainer
+from src.pneumonia_classifier.components.model_pusher import Model_Pusher
 from src.pneumonia_classifier.config.configuration import configration
 
 class PipeLine():
@@ -33,13 +34,24 @@ class PipeLine():
             return model_trainer.initiate_model_trainer()
         except Exception as e:
             raise classificationException(e,sys) from e
+        
+    def start_model_pusher(self,model_trainer_artifact = ModelTrainerArtifact)-> ModelPusherArtifact:
+        try:
+            model_pusher = Model_Pusher(model_pusher_config= self.config.get_model_pusher_config(),
+                                        model_trainer_artfact=model_trainer_artifact)
+
+            return model_pusher.initiate_model_pusher()
+        except Exception as e:
+            raise classificationException(e, sys) from e
+        
     def run_pipeline(self):
         try:
             lg.info("pipeline stating.")
             data_ingestion_artifact = self.start_data_ingestion()
             model_trainer_artifact = self.start_model_trainer(data_ingestion_artifact=data_ingestion_artifact)
-
-            return model_trainer_artifact
+            model_pusher_artifact = self.start_model_pusher(model_trainer_artifact=model_trainer_artifact)
+            
+            return model_pusher_artifact
         
         except Exception as e:
             raise classificationException(e, sys) from e
